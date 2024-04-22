@@ -2,6 +2,7 @@ import { Text, FlatList, ActivityIndicator } from "react-native";
 import OrderListItem from "@/components/OrderListItem";
 import { useMyOrderList } from "@/api/orders";
 import { useUpdateAllOrderSubcription } from "@/api/orders/subcription";
+import Empty from "@/components/Container/Empty";
 
 export default function OrdersScreen() {
 	const { data: orders, isLoading, error } = useMyOrderList();
@@ -12,6 +13,10 @@ export default function OrdersScreen() {
 	}
 	if (isLoading) {
 		return <ActivityIndicator />;
+	}
+	// console.log(orders);
+	if (orders?.length === 0) {
+		return <Empty />;
 	}
 	return (
 		<FlatList

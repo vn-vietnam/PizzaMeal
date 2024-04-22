@@ -21,6 +21,7 @@ import {
 	StyleSheet,
 	Pressable,
 	ActivityIndicator,
+	ScrollView,
 } from "react-native";
 
 const sizes: PizzaSize[] = ["S", "M", "L", "XL"];
@@ -54,7 +55,7 @@ const ProductDetailsScreen = () => {
 	}
 
 	return (
-		<View style={styles.container}>
+		<ScrollView style={styles.container}>
 			<Stack.Screen
 				options={{
 					title: product?.name,
@@ -74,13 +75,14 @@ const ProductDetailsScreen = () => {
 					),
 				}}
 			/>
-
-			<RemoteImage
-				path={product?.image}
-				fallback={defaultPizzaImage}
-				resizeMode="cover"
-				style={styles.image}
-			/>
+			<View style={{ alignItems: "center", marginVertical: 40 }}>
+				<RemoteImage
+					path={product?.image}
+					fallback={defaultPizzaImage}
+					resizeMode="cover"
+					style={styles.image}
+				/>
+			</View>
 
 			<Text>Select size</Text>
 			<View style={styles.sizes}>
@@ -110,10 +112,12 @@ const ProductDetailsScreen = () => {
 					</Pressable>
 				))}
 			</View>
-
+			<View style={{ marginVertical: 20 }}>
+				<Text>{product?.description}</Text>
+			</View>
 			<Text style={styles.price}>${product?.price}</Text>
-			<Button  text="Add to cart" />
-		</View>
+			<Button text="Add to cart"  />
+		</ScrollView>
 	);
 };
 
@@ -124,14 +128,15 @@ const styles = StyleSheet.create({
 		padding: 10,
 	},
 	image: {
-		width: "100%",
+		width: "50%",
 		aspectRatio: 1,
-		borderRadius: 200
+		borderRadius: 100,
 	},
 	price: {
 		fontSize: 18,
 		fontWeight: "bold",
 		marginTop: "auto",
+		marginVertical: 30,
 	},
 
 	sizes: {

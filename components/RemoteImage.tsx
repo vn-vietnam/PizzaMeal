@@ -9,14 +9,16 @@ type RemoteImageProps = {
 
 const RemoteImage = ({ path, fallback, ...imageProps }: RemoteImageProps) => {
 	const [image, setImage] = useState<string | null>(null);
-  // console.log(path)
+	// console.log(path)
 	useEffect(() => {
 		if (!path) return;
 		(async () => {
 			setImage("");
 			try {
-				const { data } = await supabase.storage.from("product_image").download(path);
-        // console.log(data)
+				const { data } = await supabase.storage
+					.from("product_image")
+					.download(path);
+				
 				if (data) {
 					const fr = new FileReader();
 					fr.readAsDataURL(data);
@@ -28,10 +30,12 @@ const RemoteImage = ({ path, fallback, ...imageProps }: RemoteImageProps) => {
 				console.log(error);
 			}
 		})();
+		if (path?.includes("file")) {
+			setImage(path);
+			
+		}
 	}, [path]);
 
-	if (!image) {
-	}
 	// console.log(image)
 	return <Image source={{ uri: image || fallback }} {...imageProps} />;
 };

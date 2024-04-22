@@ -1,4 +1,4 @@
-import { View, Text, TextInput, StyleSheet, Alert } from "react-native";
+import { View, Text, TextInput, StyleSheet, Alert, Image, ToastAndroid } from "react-native";
 import React, { useState } from "react";
 import Button from "../../components/Button";
 import Colors from "../../constants/Colors";
@@ -17,14 +17,30 @@ const SignInScreen = () => {
 			password,
 		});
 
-		if (error) Alert.alert(error.message);
+		if (error) {
+			ToastAndroid.show(error.message, ToastAndroid.BOTTOM);
+		}else{
+			ToastAndroid.show("Login successfully", ToastAndroid.BOTTOM);
+		}
 		setLoading(false);
 	}
 
 	return (
 		<View style={styles.container}>
 			<Stack.Screen options={{ headerShown: false }} />
-			<Text style={{fontSize: 55, marginBottom: 20, fontWeight: "bold"}}>Sign In</Text>
+			<View style={{ alignItems: "center" }}>
+				<Image
+					source={require("@/assets/images/adaptive-icon.png")}
+					alt="logo"
+					style={{
+						width: 200,
+						height: 200,
+					}}
+				/>
+			</View>
+			<Text style={{ fontSize: 55, marginBottom: 20, fontWeight: "bold" }}>
+				Sign In
+			</Text>
 			<Text style={styles.label}>Email</Text>
 			<TextInput
 				value={email}

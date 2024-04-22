@@ -1,9 +1,11 @@
 import { supabase } from "@/lib/supabase";
 import { useAuth } from "@/providers/AuthProvider";
-import { View, Text, Button, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet } from "react-native";
+import { Button } from "react-native-elements";
 
 const ProfileScreen = () => {
-	const { session, profile }: any = useAuth();
+	const { session, profile, setProfile }: any = useAuth();
+	// console.log(profile);
 	return (
 		<View
 			style={{
@@ -13,12 +15,23 @@ const ProfileScreen = () => {
 				gap: 10,
 			}}
 		>
-			<Text style={{ textAlign: "center" }}>{session?.user?.email}</Text>
-			<Text style={{ textAlign: "center" }}>{profile?.group}</Text>
-
+			<Image
+				source={require("@/assets/images/adaptive-icon.png")}
+				alt="logo"
+				style={{
+					width: 200,
+					height: 200,
+				}}
+			/>
+			<Text style={{ textAlign: "center", fontSize: 15, marginBottom: 20 }}>
+				Email: {session?.user?.email}
+			</Text>
 			<Button
 				title="Sign out"
-				onPress={async () => await supabase.auth.signOut()}
+				onPress={async () => {
+					await supabase.auth.signOut();
+					setProfile(null);
+				}}
 			/>
 		</View>
 	);

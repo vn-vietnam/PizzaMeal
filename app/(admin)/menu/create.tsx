@@ -126,8 +126,8 @@ const CreateProductScreen = () => {
 			aspect: [4, 3],
 			quality: 1,
 		});
-
 		if (!result.canceled) {
+			// console.log(result.assets[0].uri)
 			setImage(result.assets[0].uri);
 		}
 	};
@@ -141,7 +141,7 @@ const CreateProductScreen = () => {
 			},
 		});
 	};
-
+	// console.log(image);
 	const confirmDelete = () => {
 		Alert.alert("Confirm", "Are you sure you want to delete this product", [
 			{
