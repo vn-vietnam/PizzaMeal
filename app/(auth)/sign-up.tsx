@@ -44,6 +44,16 @@ const SignUpScreen = () => {
 						height: 200,
 					}}
 				/>
+				<Text
+					style={{
+						fontSize: 30,
+						marginBottom: 20,
+						fontWeight: "bold",
+						color: "#f1c40f",
+					}}
+				>
+					PizzaMeal
+				</Text>
 			</View>
 			<Text style={{ fontSize: 55, marginBottom: 20, fontWeight: "bold" }}>
 				Sign Up
