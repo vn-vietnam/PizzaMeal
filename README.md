@@ -23,7 +23,7 @@
 
 ## Demo
 
-<video controls src="assets/vd.mp4" title="Title"></video>
+<video controls muted src="assets/vdz.mp4" title="Title"></video>
 
 ## Table of Contents
 
