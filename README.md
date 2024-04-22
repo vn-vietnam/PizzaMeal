@@ -21,13 +21,16 @@
 </p>
 </details>
 
+## Demo
+
+<video controls src="assets/vd.mp4" title="Title"></video>
+
 ## Table of Contents
 
 - [Introduction](#Introduction)
 - [Features](#Features)
 - [Technologies](#Technologies)
 - [Installing](#Installing)
-- [Demo](#Demo)
 - [Prerequisites](#Prerequisites)
 - [Setting up Dev](#Setting-up-Dev)
 
@@ -65,10 +68,6 @@ running.
 npm install
 npm start
 ```
-
-## Demo
-
-You can try it [here](https://expo.dev/preview/update?message=update&updateRuntimeVersion=1.0.0&createdAt=2024-04-16T04%3A19%3A18.321Z&slug=exp&projectId=d2961c41-5aab-4f9c-bbb3-e3e1eb597e25&group=32f5aadc-b9fb-44ee-bc33-1df1499f4bae)
 
 ## Prerequisites
 
