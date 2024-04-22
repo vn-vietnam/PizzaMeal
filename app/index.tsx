@@ -5,7 +5,7 @@ import Loading from "@/components/Container/Loading";
 
 const index = () => {
 	const { session, loading, profile } = useAuth();
-	console.log(profile)
+	// console.log(profile)
 	if (!session) {
 		return <Redirect href={"/sign-in"} />;
 	}
