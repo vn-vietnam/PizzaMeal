@@ -26,23 +26,40 @@ const ProfileScreen = () => {
 				</View>
 				<View style={styles.item}>
 					<Text>Email: {profile?.email}</Text>
-					<FontAwesome name="envelope-o" size={25} />
+					{profile.email ? (
+						<FontAwesome name="envelope-o" size={25} />
+					) : (
+						<FontAwesome name="warning" size={25} color="red" />
+					)}
 				</View>
 				<View style={styles.item}>
 					<Text>Contact: {profile?.phone}</Text>
-					<FontAwesome name="phone" size={25} />
+					{profile.email ? (
+						<FontAwesome name="phone" size={25} />
+					) : (
+						<FontAwesome name="warning" size={25} color="red" />
+					)}
 				</View>
 				<View style={styles.item}>
 					<Text>Full Name: {profile?.full_name}</Text>
-					<FontAwesome name="tag" size={25} />
+					{profile.email ? (
+						<FontAwesome name="tag" size={25} />
+					) : (
+						<FontAwesome name="warning" size={25} color="red" />
+					)}
 				</View>
 				<View style={styles.item}>
 					<Text>Address: {profile?.address}</Text>
-					<FontAwesome name="home" size={25} />
+					{profile.email ? (
+						<FontAwesome name="home" size={25} />
+					) : (
+						<FontAwesome name="warning" size={25} color="red" />
+					)}
 				</View>
 				<Link href="/updateUser" style={styles.item} asChild>
 					<Pressable style={{ backgroundColor: "#f1c40f" }}>
 						<Text>Update information</Text>
+					
 						<FontAwesome name="hand-o-right" size={25} />
 					</Pressable>
 				</Link>

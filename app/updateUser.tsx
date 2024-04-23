@@ -6,7 +6,7 @@ import {
 	Button,
 	ToastAndroid,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, Stack, useRouter } from "expo-router";
 import Colors from "@/constants/Colors";
 import { useUpdateProfiles } from "@/api/profile";
@@ -14,16 +14,16 @@ import { useAuth } from "@/providers/AuthProvider";
 import { supabase } from "@/lib/supabase";
 
 const UserUpdate = () => {
-	const { session, setProfile }: any = useAuth();
-
+	const { session, setProfile, profile }: any = useAuth();
+	// console.log(profile);
 	const [email, setEmail] = useState("");
 	const [name, setName] = useState("");
 	const [address, setAdress] = useState("");
 	const [phone, setPhone] = useState("");
 	const { mutate: updateProfile } = useUpdateProfiles();
-	const { profile } = useAuth();
 	const [errors, setErrors] = useState("");
 	const router = useRouter();
+
 	const validateInput = () => {
 		setErrors("");
 		if (!name) {
@@ -44,6 +44,16 @@ const UserUpdate = () => {
 		}
 		return true;
 	};
+
+	useEffect(() => {
+		if (profile) {
+			setName(profile?.full_name);
+			setAdress(profile?.address);
+			setPhone(profile?.phone?.toString());
+			setEmail(profile?.email);
+		}
+	}, [profile]);
+
 	const submitUpdate = async () => {
 		if (!validateInput()) {
 			return;
