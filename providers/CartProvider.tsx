@@ -66,21 +66,14 @@ const CartProvider = ({ children }: PropsWithChildren) => {
 		);
 	};
 
-	const total = items.reduce(
+	let total = items.reduce(
 		(sum, item) => (sum += item.product.price * item.quantity),
 		0
 	);
-
 	const clearCart = () => {
 		setItems([]);
 	};
 	const checkout = async () => {
-		// await initialisePaymentSheet(Math.floor(total * 100));
-		// const payed = await openPaymentSheet();
-		// if (!payed) {
-		//   return;
-		// }
-
 		insertOrder(
 			{ total },
 			{
