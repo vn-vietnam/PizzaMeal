@@ -17,6 +17,7 @@ const index = () => {
 	} else {
 		return <Redirect href={"/(user)/menu"} />;
 	}
+	return <Redirect href={"/sign-in"} />;
 };
 
 export default index;
