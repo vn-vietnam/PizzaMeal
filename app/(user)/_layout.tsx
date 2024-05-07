@@ -45,7 +45,7 @@ export default function TabLayout() {
 			<Tabs.Screen
 				name="orders"
 				options={{
-					title: "Orders",
+					title: "Order",
 					headerShown: false,
 					tabBarIcon: ({ color }) => <TabBarIcon name="list" color={color} />,
 				}}
@@ -62,6 +62,7 @@ export default function TabLayout() {
 				name="map"
 				options={{
 					title: "Map",
+					headerTitle: '',
 					tabBarIcon: ({ color }) => <TabBarIcon name="map-o" color={color} />,
 				}}
 			/>

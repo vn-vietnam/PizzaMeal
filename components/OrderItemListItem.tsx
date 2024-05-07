@@ -33,7 +33,7 @@ const OrderItemListItem = ({ item }: any) => {
 				</View>
 			</View>
 			<View style={styles.quantitySelector}>
-				<Text style={styles.quantity}>{item.quantity}</Text>
+				<Text style={styles.quantity}>Quantity: {item.quantity}</Text>
 			</View>
 		</View>
 	);
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
 	},
 	quantity: {
 		fontWeight: "500",
-		fontSize: 18,
+		fontSize: 14,
 	},
 	price: {
 		color: Colors.light.tint,
