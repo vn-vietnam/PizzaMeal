@@ -13,18 +13,11 @@ import { useColorScheme } from "@/components/useColorScheme";
 import CartProvider from "@/providers/CartProvider";
 import AuthProvider from "@/providers/AuthProvider";
 import QueryProvider from "@/providers/QueryProvider";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import Header from "@/components/Header";
 
-export {
-	// Catch any errors thrown by the Layout component.
-	ErrorBoundary,
-} from "expo-router";
+export { ErrorBoundary } from "expo-router";
 
-export const unstable_settings = {
-	// Ensure that reloading on `/modal` keeps a back button present.
-	initialRouteName: "(auth)/sign-in",
-};
-
-// Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
@@ -33,7 +26,6 @@ export default function RootLayout() {
 		...FontAwesome.font,
 	});
 
-	// Expo Router uses Error Boundaries to catch errors in the navigation tree.
 	useEffect(() => {
 		if (error) throw error;
 	}, [error]);
@@ -58,18 +50,30 @@ function RootLayoutNav() {
 		<ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
 			<AuthProvider>
 				<QueryProvider>
-					<CartProvider>
-						<Stack
-							screenOptions={{
-								headerShown: false,
-							}}
-						>
-							<Stack.Screen name="(auth)" options={{ headerShown: false }} />
-							<Stack.Screen name="(user)" options={{ headerShown: false }} />
-							<Stack.Screen name="(admin)" options={{ headerShown: false }} />
-							<Stack.Screen name="cart" options={{ headerShown: true, headerTitle: 'Cart' }} />
-						</Stack>
-					</CartProvider>
+					<GestureHandlerRootView style={{ flex: 1 }}>
+						<CartProvider>
+							<Stack
+								screenOptions={{
+									headerShown: false,
+								}}
+							>
+								<Stack.Screen name="(user)" options={{ headerShown: false }} />
+								<Stack.Screen name="(admin)" options={{ headerShown: false }} />
+								<Stack.Screen name="(auth)" options={{ headerShown: false }} />
+								<Stack.Screen
+									name="cart"
+									options={{ headerShown: true, headerTitle: "Cart" }}
+								/>
+								<Stack.Screen
+									name="search"
+									options={{
+										headerTitleAlign: "center",
+										header: () => <Header />,
+									}}
+								/>
+							</Stack>
+						</CartProvider>
+					</GestureHandlerRootView>
 				</QueryProvider>
 			</AuthProvider>
 		</ThemeProvider>

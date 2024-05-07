@@ -19,13 +19,12 @@ type ProductListItemProps = {
 	product: Tables<"products">;
 };
 
-const ProductListItem = ({ product }: any) => {
-	const segments = useSegments();
-	const segment = segments[0] || "";
+const SearchListItem = ({ product }: any) => {
+	
 	// console.log(product)
 	return (
 		<Link
-			href={`/${segment}/menu/${product.id}` as `${string}:${string}`}
+			href={`/(user)/menu/${product.id}` as `${string}:${string}`}
 			asChild
 		>
 			<Pressable style={styles.container}>
@@ -52,7 +51,9 @@ const ProductListItem = ({ product }: any) => {
 							alignItems: "flex-end",
 						}}
 					>
-						<Text style={styles.price}>{product?.categories?.name || 'hello'}</Text>
+						<Text style={styles.price}>
+							{product?.categories?.name || "hello"}
+						</Text>
 						<Text style={styles.price}>${product.price}</Text>
 					</View>
 				</View>
@@ -85,4 +86,4 @@ const styles = StyleSheet.create({
 		fontWeight: "bold",
 	},
 });
-export default ProductListItem;
+export default SearchListItem;

@@ -3,7 +3,6 @@ import {
 	Text,
 	TextInput,
 	StyleSheet,
-	Alert,
 	Image,
 	ToastAndroid,
 } from "react-native";

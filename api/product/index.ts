@@ -14,6 +14,68 @@ export const useProductList = () => {
 		},
 	});
 };
+
+// get filter search products
+export const useSearchProduct = (search: any) => {
+	return useQuery({
+		queryKey: ["products", search],
+		queryFn: async () => {
+			const { data, error } = await supabase
+				.from("products")
+				.select(
+					`
+				name,image,price,id,
+				categories (
+				  id,name
+				)
+			  `
+				)
+				.like("name", `%${search}%`);
+			if (error) {
+				throw new Error(error.message);
+			}
+			return data;
+		},
+	});
+};
+// get fillter products
+export const useFilterProductList = (idCate: any) => {
+	return useQuery({
+		queryKey: ["products", idCate],
+		queryFn: async () => {
+			if (idCate) {
+				const { data, error } = await supabase
+					.from("products")
+					.select(
+						`
+					name,image,price,id,
+					categories (
+					  id,name
+					)
+				  `
+					)
+					.eq("cate_id", idCate);
+				if (error) {
+					throw new Error(error.message);
+				}
+				return data;
+			} else {
+				const { data, error } = await supabase.from("products").select(
+					`
+				name,image,price,id,
+				categories (
+				  id,name
+				)
+			  `
+				);
+				if (error) {
+					throw new Error(error.message);
+				}
+				return data;
+			}
+		},
+	});
+};
 // get single product
 export const useProduct = (id: number) => {
 	return useQuery({
