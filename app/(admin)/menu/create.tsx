@@ -2,7 +2,15 @@ import Button from "@/components/Button";
 
 import Colors from "@/constants/Colors";
 import { useEffect, useState } from "react";
-import { View, Text, StyleSheet, TextInput, Image, Alert } from "react-native";
+import {
+	View,
+	Text,
+	StyleSheet,
+	TextInput,
+	Image,
+	Alert,
+	ScrollView,
+} from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { Stack, useLocalSearchParams, useRouter } from "expo-router";
 
@@ -19,7 +27,9 @@ import { UseMutationResult, useMutation } from "@tanstack/react-query";
 import { decode } from "base64-arraybuffer";
 import Loading from "@/components/Container/Loading";
 import RemoteImage from "@/components/RemoteImage";
-
+import SelectDropdown from "react-native-select-dropdown";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import { useCategoryList } from "@/api/category";
 export const defaultPizzaImage =
 	"https://notjustdev-dummy.s3.us-east-2.amazonaws.com/food/default.png";
 
@@ -28,6 +38,8 @@ const CreateProductScreen = () => {
 	const [price, setPrice] = useState<string>("");
 	const [errors, setErrors] = useState<string>("");
 	const [image, setImage] = useState<string | null>(null);
+	const [des, setDes] = useState<string>("");
+	const [cate, setCate] = useState<number>();
 	const [loading, setLoading] = useState(false);
 	const { id: idString } = useLocalSearchParams();
 	const id = parseFloat(
@@ -37,15 +49,17 @@ const CreateProductScreen = () => {
 	const { mutate: insertProduct } = useInsertProduct();
 	const { mutate: updateProduct } = useUpdateProduct();
 	const { data: updatingProduct } = useProduct(id);
+	const { data: categories } = useCategoryList();
+
 	const { mutate: deleteProduct } = useDeleteProduct();
-
 	const router = useRouter();
-
 	useEffect(() => {
 		if (updatingProduct) {
 			setName(updatingProduct.name);
 			setPrice(updatingProduct.price.toString());
 			setImage(updatingProduct.image);
+			setDes(updatingProduct?.description || "");
+			setCate(updatingProduct?.categories?.id);
 		}
 	}, [updatingProduct]);
 
@@ -107,7 +121,7 @@ const CreateProductScreen = () => {
 		const imagePath = await uploadImage();
 		// console.log(imagePath)
 		updateProduct(
-			{ id, name, price: parseFloat(price), image: imagePath },
+			{ id, name, price: parseFloat(price), image: imagePath, des, cate },
 			{
 				onSuccess: () => {
 					setLoading(false);
@@ -178,7 +192,7 @@ const CreateProductScreen = () => {
 	}
 
 	return (
-		<View style={styles.container}>
+		<ScrollView style={styles.container}>
 			<Stack.Screen
 				options={{ title: isUpdating ? "Update Product" : "Create Product" }}
 			/>
@@ -208,6 +222,64 @@ const CreateProductScreen = () => {
 				style={styles.input}
 				keyboardType="numeric"
 			/>
+			<Text style={styles.label}>Categories</Text>
+			{/* <TextInput
+				value={cate}
+				onChangeText={setCate}
+				style={styles.textInput}
+				placeholder="Category"
+			/> */}
+			{categories && (
+				<SelectDropdown
+					data={categories}
+					onSelect={(selectedItem, index) => {
+						setCate(selectedItem.id);
+						// console.log(selectedItem, index);
+					}}
+					renderButton={(selectedItem, isOpened) => {
+						return (
+							<View style={styles.dropdownButtonStyle}>
+								{selectedItem && (
+									<Icon
+										name={selectedItem.icon}
+										style={styles.dropdownButtonIconStyle}
+									/>
+								)}
+								<Text style={styles.dropdownButtonTxtStyle}>
+									{(selectedItem && selectedItem.name) || updatingProduct?.categories?.name}
+								</Text>
+								<Icon
+									name={isOpened ? "chevron-up" : "chevron-down"}
+									style={styles.dropdownButtonArrowStyle}
+								/>
+							</View>
+						);
+					}}
+					renderItem={(item, index, isSelected) => {
+						return (
+							<View
+								style={{
+									...styles.dropdownItemStyle,
+									...(isSelected && { backgroundColor: "#D2D9DF" }),
+								}}
+							>
+								{/* <Icon name={item.icon} style={styles.dropdownItemIconStyle} /> */}
+								<Text style={styles.dropdownItemTxtStyle}>{item.name}</Text>
+							</View>
+						);
+					}}
+					showsVerticalScrollIndicator={false}
+					dropdownStyle={styles.dropdownMenuStyle}
+				/>
+			)}
+			<Text style={styles.label}>Description</Text>
+			<TextInput
+				multiline={true}
+				value={des}
+				onChangeText={setDes}
+				style={styles.textInput}
+				placeholder="Description"
+			/>
 
 			<Text style={{ color: "red" }}>{errors}</Text>
 			<Button onPress={onSubmit} text={isUpdating ? "Update" : "Create"} />
@@ -218,7 +290,7 @@ const CreateProductScreen = () => {
 					style={styles.textButton}
 				/>
 			)}
-		</View>
+		</ScrollView>
 	);
 };
 
@@ -226,7 +298,7 @@ export default CreateProductScreen;
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		justifyContent: "center",
+		// justifyContent: "center",
 		padding: 10,
 	},
 	image: {
@@ -248,8 +320,59 @@ const styles = StyleSheet.create({
 		marginTop: 5,
 		marginBottom: 20,
 	},
+	textInput: {
+		backgroundColor: "white",
+		padding: 10,
+		borderRadius: 5,
+		marginTop: 5,
+		marginBottom: 20,
+	},
 	label: {
 		color: "gray",
 		fontSize: 16,
+	},
+	dropdownButtonStyle: {
+		width: 200,
+		height: 50,
+		backgroundColor: "white",
+		borderRadius: 5,
+		flexDirection: "row",
+		justifyContent: "center",
+		alignItems: "center",
+		paddingHorizontal: 12,
+		marginVertical: 10
+	},
+	dropdownButtonTxtStyle: {
+		flex: 1,
+	},
+	dropdownButtonArrowStyle: {
+		fontSize: 28,
+	},
+	dropdownButtonIconStyle: {
+		fontSize: 28,
+		marginRight: 8,
+	},
+	dropdownMenuStyle: {
+		backgroundColor: "#E9ECEF",
+		borderRadius: 5,
+		
+	},
+	dropdownItemStyle: {
+		width: "100%",
+		flexDirection: "row",
+		paddingHorizontal: 12,
+		justifyContent: "center",
+		alignItems: "center",
+		paddingVertical: 8,
+	},
+	dropdownItemTxtStyle: {
+		flex: 1,
+		// fontSize: 18,
+		// fontWeight: "500",
+		// color: "#151E26",
+	},
+	dropdownItemIconStyle: {
+		fontSize: 28,
+		marginRight: 8,
 	},
 });

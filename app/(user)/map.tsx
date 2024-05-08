@@ -6,7 +6,7 @@ import { hotels } from "@/constants/data/hotel";
 import { withDecay } from "react-native-reanimated";
 import { Ionicons } from "@expo/vector-icons";
 
-const Test = () => {
+const Map = () => {
 	// hooks
 	const sheetRef = useRef<BottomSheet>(null);
 
@@ -93,4 +93,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default Test;
+export default Map;

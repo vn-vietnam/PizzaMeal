@@ -83,7 +83,12 @@ export const useProduct = (id: number) => {
 		queryFn: async () => {
 			const { data, error } = await supabase
 				.from("products")
-				.select("*")
+				.select(`
+				name,image,price,id,description,
+				categories (
+				  id,name
+				)
+			  `)
 				.eq("id", id)
 				.single();
 
@@ -133,6 +138,8 @@ export const useUpdateProduct = () => {
 					name: data.name,
 					image: data.image,
 					price: data.price,
+					description: data.des,
+					cate_id: data.cate,
 				})
 				.eq("id", data.id)
 				.select()

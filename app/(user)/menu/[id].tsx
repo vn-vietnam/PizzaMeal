@@ -63,8 +63,16 @@ const ProductDetailsScreen = () => {
 					style={styles.image}
 				/>
 			</View>
+			<Text
+				style={{
+					marginVertical: 10,
+					fontWeight: "bold",
+				}}
+			>
+				Category: {product?.categories?.name}
+			</Text>
 
-			<Text>Select size</Text>
+			<Text style={{ fontWeight: "bold" }}>Select size</Text>
 			<View style={styles.sizes}>
 				{sizes.map((size) => (
 					<Pressable

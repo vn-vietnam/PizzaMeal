@@ -9,7 +9,7 @@ type Product = Tables<"products">;
 
 type CartType = {
 	items: CartItem[];
-	addItem: (product: Product, size: CartItem["size"]) => void;
+	addItem: (product: any, size: CartItem["size"]) => void;
 	updateQuantity: (itemId: string, amount: -1 | 1) => void;
 	total: number;
 	checkout: () => void;
