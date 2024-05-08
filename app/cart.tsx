@@ -5,20 +5,28 @@ import { useCart } from "@/providers/CartProvider";
 import CartListItem from "@/components/CartListItem";
 import Button from "@/components/Button";
 import Cart from "@/components/Container/Cart";
+import { useAuth } from "@/providers/AuthProvider";
 
 const CartScreen = () => {
 	const { items, total, checkout } = useCart();
+	const { session, profile, setProfile }: any = useAuth();
+	console.log(profile);
+
 	// console.log(items)
 	if (items?.length === 0) {
 		return <Cart />;
 	}
 	const checkFinish = () => {
-		if (total === 0) {
-			// console.log("please select pizza!");
-			ToastAndroid.show("Please select pizza!", ToastAndroid.BOTTOM);
+		if (!profile.email || !profile.phone || !profile.username || !profile.address) {
+			ToastAndroid.show("Please update profile", ToastAndroid.BOTTOM);
 		} else {
-			ToastAndroid.show("Successfully!", ToastAndroid.BOTTOM);
-			checkout();
+			if (total === 0) {
+				// console.log("please select pizza!");
+				ToastAndroid.show("Please select pizza!", ToastAndroid.BOTTOM);
+			} else {
+				ToastAndroid.show("Successfully!", ToastAndroid.BOTTOM);
+				checkout();
+			}
 		}
 	};
 	return (
