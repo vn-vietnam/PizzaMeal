@@ -101,7 +101,7 @@ const CreateProductScreen = () => {
 		const imagePath = await uploadImage();
 		// Save in the database
 		insertProduct(
-			{ name, price: parseFloat(price), image: imagePath },
+			{ name, price: parseFloat(price), image: imagePath, des, cate },
 			{
 				onSuccess: () => {
 					setLoading(false);

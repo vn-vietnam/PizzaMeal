@@ -111,6 +111,8 @@ export const useInsertProduct = () => {
 					name: data.name,
 					image: data.image,
 					price: data.price,
+					description: data.des,
+					cate_id: data.cate,
 				})
 				.single();
 
