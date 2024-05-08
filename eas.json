@@ -1,21 +1,26 @@
 {
-  "build": {
-    "preview": {
-      "android": {
-        "buildType": "apk"
-      }
-    },
-    "preview2": {
-      "android": {
-        "gradleCommand": ":app:assembleRelease"
-      }
-    },
-    "preview3": {
-      "developmentClient": true
-    },
-    "preview4": {
-      "distribution": "internal"
-    },
-    "production": {}
-  }
+	"build": {
+		"preview": {
+			"android": {
+				"buildType": "apk"
+			},
+			"env": {
+				"EXPO_PUBLIC_URL": "https://owteeuyoysquqxncphlq.supabase.co",
+				"EXPO_PUBLIC_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im93dGVldXlveXNxdXF4bmNwaGxxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTMzMzkxMDUsImV4cCI6MjAyODkxNTEwNX0.-rC3Sl7oezElBfmjPjyO0du8DZ19qwTTzngr2eJHiDY",
+				"EXPO_PUBLIC_API_URL_MAP": "AIzaSyDSj5xVA1RnhVryu4cw89glyikazzXa8CI"
+			}
+		},
+		"preview2": {
+			"android": {
+				"gradleCommand": ":app:assembleRelease"
+			}
+		},
+		"preview3": {
+			"developmentClient": true
+		},
+		"preview4": {
+			"distribution": "internal"
+		},
+		"production": {}
+	}
 }

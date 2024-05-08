@@ -14,10 +14,16 @@
 <details>
 	<summary>View screenshots</summary>
 <p align="left">
+	<summary>Update</summary>
+  <img src="./assets/images/img4.jpg" width="300"  />
+  <img src="./assets/images/img5.jpg" width="300"  />
+  <img src="./assets/images/img6.jpg" width="300"  />
+  <img src="./assets/images/img7.jpg" width="300"  />
+</p>
+<p align="left">
   <img src="./assets/images/img1.jpg" width="300"  />
   <img src="./assets/images/img2.jpg" width="300"  />
   <img src="./assets/images/img3.jpg" width="300"  />
-
 </p>
 </details>
 
