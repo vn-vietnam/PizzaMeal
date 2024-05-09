@@ -77,7 +77,7 @@ const Header = () => {
 						</View>
 					</TouchableOpacity>
 				</Link>
-				<Link href={"/(user)/map"} asChild>
+				{/* <Link href={"/(user)/news"} asChild>
 					<TouchableOpacity
 						style={{
 							width: 40,
@@ -92,7 +92,7 @@ const Header = () => {
 							<Ionicons name={"map-outline"} size={20} />
 						</View>
 					</TouchableOpacity>
-				</Link>
+				</Link> */}
 			</View>
 		</BlurView>
 	);
