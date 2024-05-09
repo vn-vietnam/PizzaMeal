@@ -1,4 +1,4 @@
-<img src="./assets/images/adaptive-icon.png" width="50px" alt="Logo" align="right">
+<img src="./assets/images/adaptive-icon.png" width="100px" alt="Logo" align="right">
 
 # PizzaMeal &middot; ![Build Status](https://img.shields.io/badge/build-passing-brightgreen) [![npm](https://img.shields.io/npm/v/npm.svg?style=flat-square)](https://www.npmjs.com/package/npm) [![NTK](https://img.shields.io/badge/NTK-welcome-brightgreen.svg?style=flat-square)](https://github.com/vn-vietnam)
 
