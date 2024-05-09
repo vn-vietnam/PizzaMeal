@@ -29,7 +29,24 @@
 
 ## Demo
 
-https://github.com/vn-vietnam/PizzaMeal/assets/119742667/d61409ec-c43b-4a37-9239-d0d0f10b5001
+
+https://github.com/vn-vietnam/PizzaMeal/assets/119742667/37a491dd-d80b-4de0-b489-7348d41e12bf
+
+
+https://github.com/vn-vietnam/PizzaMeal/assets/119742667/df889802-09b2-4801-bc55-4673a58eb0e0
+
+
+https://github.com/vn-vietnam/PizzaMeal/assets/119742667/79af2115-9c5f-4f81-8368-ba95ae299401
+
+
+https://github.com/vn-vietnam/PizzaMeal/assets/119742667/08f63109-8b92-4f33-b1b8-9159ee7d2ed4
+
+
+
+https://github.com/vn-vietnam/PizzaMeal/assets/119742667/e7c61d1b-7822-4229-94c9-5ac75f072e1a
+
+
+
 
 ## Table of Contents
 
