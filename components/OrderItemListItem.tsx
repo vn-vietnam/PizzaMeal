@@ -13,6 +13,7 @@ import RemoteImage from "./RemoteImage";
 export const defaultPizzaImage =
 	"https://notjustdev-dummy.s3.us-east-2.amazonaws.com/food/default.png";
 const OrderItemListItem = ({ item }: any) => {
+	console.log(item)
 	return (
 		<View style={styles.container}>
 			<RemoteImage
@@ -29,7 +30,13 @@ const OrderItemListItem = ({ item }: any) => {
 				<Text style={styles.title}>{item.products.name}</Text>
 				<View style={styles.subtitleContainer}>
 					<Text style={styles.price}>${item.products.price.toFixed(2)}</Text>
-					<Text>Size: {item.size}</Text>
+					{item.products.cate_id === 1 ? (
+						<>
+							<Text>Size: {item?.size}</Text>
+						</>
+					) : (
+						<></>
+					)}
 				</View>
 			</View>
 			<View style={styles.quantitySelector}>
