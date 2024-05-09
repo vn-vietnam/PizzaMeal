@@ -10,9 +10,7 @@ import { useAuth } from "@/providers/AuthProvider";
 const CartScreen = () => {
 	const { items, total, checkout } = useCart();
 	const { session, profile, setProfile }: any = useAuth();
-	// console.log(profile);
 
-	// console.log(items)
 	if (items?.length === 0) {
 		return <Cart />;
 	}

@@ -1,13 +1,12 @@
 import React from "react";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-import { Link, Redirect, Tabs } from "expo-router";
-import { Pressable } from "react-native";
+import {  Redirect, Tabs } from "expo-router";
 
 import Colors from "@/constants/Colors";
 import { useColorScheme } from "@/components/useColorScheme";
 import { useClientOnlyValue } from "@/components/useClientOnlyValue";
 import { useAuth } from "@/providers/AuthProvider";
-import { BlurView } from "expo-blur";
+
 
 function TabBarIcon(props: {
 	name: React.ComponentProps<typeof FontAwesome>["name"];
@@ -52,10 +51,14 @@ export default function TabLayout() {
 			/>
 
 			<Tabs.Screen
-				name="news"
+				name="notification"
 				options={{
-					title: "News",
-					tabBarIcon: ({ color }) => <TabBarIcon name="newspaper-o" color={color} />,
+					title: "Notification",
+					headerShown: false,
+					tabBarIcon: ({ color }) => (
+						<TabBarIcon name="newspaper-o" color={color} />
+					),
+					
 				}}
 			/>
 			<Tabs.Screen

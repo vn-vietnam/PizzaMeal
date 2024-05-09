@@ -17,6 +17,9 @@ import {
 
 export default function OrderDetailsScreen() {
 	const { id: idString } = useLocalSearchParams();
+	if(!idString){
+		return <ActivityIndicator />;
+	}
 	const id = parseFloat(typeof idString === "string" ? idString : idString[0]);
 
 	const { data: order, isLoading, error } = useOrderDetails(id);
