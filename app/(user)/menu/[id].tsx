@@ -71,35 +71,42 @@ const ProductDetailsScreen = () => {
 			>
 				Category: {product?.categories?.name}
 			</Text>
+			{product?.categories?.name === "Pizza" ? (
+				<>
+					<Text style={{ fontWeight: "bold" }}>Select size</Text>
+					<View style={styles.sizes}>
+						{sizes.map((size) => (
+							<Pressable
+								onPress={() => {
+									setSelectedSize(size);
+								}}
+								style={[
+									styles.size,
+									{
+										backgroundColor:
+											selectedSize === size ? "gainsboro" : "white",
+									},
+								]}
+								key={size}
+							>
+								<Text
+									style={[
+										styles.sizeText,
+										{
+											color: selectedSize === size ? "black" : "gray",
+										},
+									]}
+								>
+									{size}
+								</Text>
+							</Pressable>
+						))}
+					</View>
+				</>
+			) : (
+				<></>
+			)}
 
-			<Text style={{ fontWeight: "bold" }}>Select size</Text>
-			<View style={styles.sizes}>
-				{sizes.map((size) => (
-					<Pressable
-						onPress={() => {
-							setSelectedSize(size);
-						}}
-						style={[
-							styles.size,
-							{
-								backgroundColor: selectedSize === size ? "gainsboro" : "white",
-							},
-						]}
-						key={size}
-					>
-						<Text
-							style={[
-								styles.sizeText,
-								{
-									color: selectedSize === size ? "black" : "gray",
-								},
-							]}
-						>
-							{size}
-						</Text>
-					</Pressable>
-				))}
-			</View>
 			<View style={{ marginVertical: 20 }}>
 				<Text>{product?.description}</Text>
 			</View>
