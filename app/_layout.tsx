@@ -65,6 +65,14 @@ function RootLayoutNav() {
 									options={{ headerShown: true, headerTitle: "Cart" }}
 								/>
 								<Stack.Screen
+									name="createBlog"
+									options={{
+										presentation: "modal",
+										headerShown: true,
+										headerTitle: "Blog",
+									}}
+								/>
+								<Stack.Screen
 									name="search"
 									options={{
 										headerTitleAlign: "center",

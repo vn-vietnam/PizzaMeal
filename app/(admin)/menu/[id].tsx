@@ -29,7 +29,9 @@ export const defaultPizzaImage =
 	"https://notjustdev-dummy.s3.us-east-2.amazonaws.com/food/default.png";
 const ProductDetailsScreen = () => {
 	const { id: idString } = useLocalSearchParams();
-
+	if(!idString){
+		return <ActivityIndicator />;
+	}
 	const id = parseFloat(typeof idString === "string" ? idString : idString[0]);
 	const { data: product, error, isLoading } = useProduct(id);
 

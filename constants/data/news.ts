@@ -1,6 +1,14 @@
 export const news = [
 	{
-		data: "Monday to Sunday from 7 AM - 11 PM",
+		data: {
+			html: `
+		  <p style='text-align:center;'>
+			Hello World!
+		  </p>
+		  <p>Updating create Blog ...</p>
+		  
+		  `,
+		},
 		title: "Opening Hours ",
 		id: 1,
 		author: "Pizza",

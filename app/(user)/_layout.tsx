@@ -1,12 +1,12 @@
 import React from "react";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-import {  Redirect, Tabs } from "expo-router";
+import { Redirect, Tabs } from "expo-router";
 
 import Colors from "@/constants/Colors";
 import { useColorScheme } from "@/components/useColorScheme";
 import { useClientOnlyValue } from "@/components/useClientOnlyValue";
 import { useAuth } from "@/providers/AuthProvider";
-
+import { BlurView } from "expo-blur";
 
 function TabBarIcon(props: {
 	name: React.ComponentProps<typeof FontAwesome>["name"];
@@ -27,7 +27,25 @@ export default function TabLayout() {
 			screenOptions={{
 				tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
 				headerShown: useClientOnlyValue(false, true),
-				headerTransparent: true,
+				// headerTransparent: true,
+				tabBarBackground: () => (
+					<BlurView
+						tint={'extraLight'}
+						intensity={100}
+						style={{
+							flex: 1,
+							backgroundColor: "rgba(0, 0, 0, 0.05)",
+						}}
+					/>
+				),
+				tabBarStyle: {
+					backgroundColor: "transparent",
+					position: "absolute",
+					bottom: 0,
+					left: 0,
+					right: 0,
+					elevation: 0,
+				},
 			}}
 		>
 			<Tabs.Screen name="index" options={{ href: null }} />
@@ -58,7 +76,6 @@ export default function TabLayout() {
 					tabBarIcon: ({ color }) => (
 						<TabBarIcon name="newspaper-o" color={color} />
 					),
-					
 				}}
 			/>
 			<Tabs.Screen

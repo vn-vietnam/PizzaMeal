@@ -26,6 +26,9 @@ export const defaultPizzaImage =
 	"https://notjustdev-dummy.s3.us-east-2.amazonaws.com/food/default.png";
 const ProductDetailsScreen = () => {
 	const { id: idString } = useLocalSearchParams();
+	if(!idString){
+		return <ActivityIndicator />;
+	}
 	const id = parseFloat(typeof idString === "string" ? idString : idString[0]);
 	const { data: product, error, isLoading } = useProduct(id);
 	const { addItem } = useCart();
@@ -55,7 +58,7 @@ const ProductDetailsScreen = () => {
 		<ScrollView style={styles.container}>
 			<Stack.Screen options={{ title: product?.name }} />
 
-			<View style={{ alignItems: "center", marginVertical: 40 }}>
+			<View style={{ alignItems: "center" }}>
 				<RemoteImage
 					path={product?.image}
 					fallback={defaultPizzaImage}
@@ -123,9 +126,10 @@ const styles = StyleSheet.create({
 		padding: 10,
 	},
 	image: {
-		width: "50%",
-		aspectRatio: 1,
-		borderRadius: 100,
+		width: "100%",
+		height: 200,
+		// aspectRatio: 1,
+		borderRadius: 10,
 	},
 	price: {
 		fontSize: 18,

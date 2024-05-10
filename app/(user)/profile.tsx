@@ -1,7 +1,7 @@
 import { supabase } from "@/lib/supabase";
 import { useAuth } from "@/providers/AuthProvider";
 import { FontAwesome } from "@expo/vector-icons";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 import { Children } from "react";
 import {
 	View,
@@ -59,7 +59,7 @@ const ProfileScreen = () => {
 				<Link href="/updateUser" style={styles.item} asChild>
 					<Pressable style={{ backgroundColor: "#f1c40f" }}>
 						<Text>Update information</Text>
-					
+
 						<FontAwesome name="hand-o-right" size={25} />
 					</Pressable>
 				</Link>
@@ -80,14 +80,18 @@ const ProfileScreen = () => {
 						setProfile(null);
 					}}
 				/>
+				{/* <Button
+					title="Create Blog"
+					onPress={() => router.push("/createBlog")}
+				/> */}
 			</ScrollView>
 		</SafeAreaView>
 	);
 };
 const styles = StyleSheet.create({
 	container: {
-		padding: 10,
-		marginTop: 50,
+		// padding: 10,
+		// marginTop: 50,
 		flexDirection: "column",
 		alignContent: "center",
 	},
