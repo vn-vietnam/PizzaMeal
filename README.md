@@ -53,6 +53,7 @@ https://github.com/vn-vietnam/PizzaMeal/assets/119742667/e7c61d1b-7822-4229-94c9
 - [Introduction](#Introduction)
 - [Features](#Features)
 - [Technologies](#Technologies)
+- [Testing](#Testing)
 - [Installing](#Installing)
 - [Prerequisites](#Prerequisites)
 - [Setting up Dev](#Setting-up-Dev)
@@ -78,6 +79,18 @@ https://github.com/vn-vietnam/PizzaMeal/assets/119742667/e7c61d1b-7822-4229-94c9
 ## Technologies
 
 React Native - TypeScript - Expo - Supabase
+
+## Testing
+
+**user**
+
+username: user@gmail.com
+pass: 123456
+
+**admin**
+
+username: admin@gmail.com
+pass: 123456
 
 ## Installing
 
